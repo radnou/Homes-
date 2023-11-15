@@ -37,15 +37,13 @@ export class HomeComponent {
          })
   }
 
-  async filterResults(value: string) {
-    if(!value) this.filteredLocationList = this.housingLocationList;
-    await this.housingService.getHousingLocationByCity(value)
+    /**
+     * Search houses based on city and update filteredLocationList
+     * @param cityValue
+     */
+  async filterResults(cityValue: string) {
+    if(!cityValue) this.filteredLocationList = this.housingLocationList;
+    await this.housingService.getHousingLocationByCity(cityValue)
         .then((housingLocationFilteredList:Housinglocation[] | undefined) => this.filteredLocationList = housingLocationFilteredList)
-
-       // this.filteredLocationList = this.housingLocationList.filter(
-       //  housingLocation => housingLocation?.city.toLowerCase().includes(value.toLowerCase())
-       // )
-
-
   }
 }

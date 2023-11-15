@@ -16,7 +16,7 @@ url = 'http://localhost:3000/locations';
   }
 
   /**
-   * return the corresponding house based of id
+   * return the corresponding houses based of id
    * @param id
    */
   async getHousingLocationById(id: Number): Promise<Housinglocation | undefined> {
@@ -25,7 +25,7 @@ url = 'http://localhost:3000/locations';
   }
 
   /**
-   * check paremeters and to the apply table
+   * check parameters and to the application table
    * @param firstName
    * @param lastName
    * @param email
@@ -34,9 +34,14 @@ url = 'http://localhost:3000/locations';
     console.log(firstName,lastName,email)
   }
 
-  async getHousingLocationByCity(value: string):Promise<Housinglocation[] | undefined> {
-    if(!value) return ;
-     const data = await fetch(`${this.url}/?city_like=${value}`);
+  /**
+   * return the promise with housingLocation based on city
+   * @param cityValue
+   */
+
+  async getHousingLocationByCity(cityValue: string):Promise<Housinglocation[] | undefined> {
+    if(!cityValue) return ;
+     const data = await fetch(`${this.url}/?city_like=${cityValue}`);
     return await data.json();
   }
 }

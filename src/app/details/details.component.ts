@@ -58,7 +58,7 @@ export class DetailsComponent {
   }
 
     /**
-     * checks input of form and submit
+     * checks input of form and submit and clear values
      */
     submitApplication() {
         this.housingService.submitApplication(
