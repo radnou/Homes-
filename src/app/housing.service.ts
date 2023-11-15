@@ -108,13 +108,30 @@ export class HousingService {
   ];
   constructor() {}
 
+  /**
+   * return all the houses
+   */
   getAllHousingLocation(): Housinglocation[] {
     return this.housingLocationList;
   }
 
+  /**
+   * return the corresponding house based of the id
+   * @param id
+   */
   getHousingLocationById(id: Number): Housinglocation | undefined {
     return this.housingLocationList.find(
       (house: Housinglocation) => house.id === id,
     );
+  }
+
+  /**
+   * check paremeters and to the apply table
+   * @param firstName
+   * @param lastName
+   * @param email
+   */
+  submitApplication(firstName: string, lastName: string, email: string) {
+    console.log(firstName,lastName,email)
   }
 }

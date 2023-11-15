@@ -3,11 +3,12 @@ import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import {HousingService} from "../housing.service";
 import {Housinglocation} from "../housinglocation";
+import {FormGroup, FormControl, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: "app-details",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
     <article>
       <img [src]="housingLocation?.photo" alt="exterion" class="listing-photo">
@@ -25,7 +26,18 @@ import {Housinglocation} from "../housinglocation";
       </section>
       <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
-        <button class="primary" type="button">Apply now </button>
+        <form action="" [formGroup]="applyForm" (submit)="submitApplication()">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" formControlName="firstName">
+            
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" formControlName="lastName"> 
+            
+            <label for="email">Email</label>
+            <input type="text" id="email" formControlName="email">
+            <button class="primary" type="submit">Apply Now</button>
+        </form>      
+      
       </section>
     </article> `,
   styleUrls: ["./details.component.css"],
@@ -34,8 +46,26 @@ export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService: HousingService =inject(HousingService);
   housingLocation : Housinglocation  | undefined;
+  applyForm = new FormGroup({
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        email: new FormControl(''),
+      }
+  );
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params["id"]);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
   }
+
+    /**
+     * checks input of form and submit
+     */
+    submitApplication() {
+        this.housingService.submitApplication(
+            this.applyForm.value.firstName ?? '',
+            this.applyForm.value.lastName ?? '',
+            this.applyForm.value.email ?? '',
+        )
+        this.applyForm.reset();
+    }
 }
