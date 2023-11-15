@@ -7,7 +7,9 @@ import { RouterModule } from "@angular/router";
   selector: "app-root",
   template: ` <main class="brand-name">
     <header class="brand-logo">
+      <a href="/">
       <img src="assets/logo.svg" alt="logo" aria-hidden="true" />
+        </a>
     </header>
     <section class="content">
       <router-outlet> </router-outlet>
