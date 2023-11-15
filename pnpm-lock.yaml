@@ -85,6 +85,9 @@ devDependencies:
   karma-jasmine-html-reporter:
     specifier: ~2.0.0
     version: 2.0.0(jasmine-core@4.5.0)(karma-jasmine@5.1.0)(karma@6.4.2)
+  prettier-config-standard:
+    specifier: ^7.0.0
+    version: 7.0.0(prettier@3.1.0)
   protractor:
     specifier: ~7.0.0
     version: 7.0.0
@@ -6336,11 +6339,18 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /prettier-config-standard@7.0.0(prettier@3.1.0):
+    resolution: {integrity: sha512-NgZy4TYupJR6aMMuV/Aqs0ONnVhlFT8PXVkYRskxREq8EUhJHOddVfBxPV6fWpgcASpJSgvvhVLk0CBO5M3Hvw==}
+    peerDependencies:
+      prettier: ^2.6.0 || ^3.0.0
+    dependencies:
+      prettier: 3.1.0
+    dev: true
+
   /prettier@3.1.0:
     resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
 
   /pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
