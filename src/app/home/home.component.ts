@@ -28,7 +28,7 @@ import { HousingService } from "../housing.service";
 export class HomeComponent {
   housingLocationList: Housinglocation[] = [];
   housingService: HousingService = inject(HousingService);
-  filteredLocationList: Housinglocation[] = [];
+  filteredLocationList: Housinglocation[] | undefined = [];
    constructor() {
      this.housingService.getAllHousingLocation()
          .then ((housingLocationList) => {
@@ -37,11 +37,14 @@ export class HomeComponent {
          })
   }
 
-  filterResults(value: string) {
+  async filterResults(value: string) {
     if(!value) this.filteredLocationList = this.housingLocationList;
-       this.filteredLocationList = this.housingLocationList.filter(
-        housingLocation => housingLocation?.city.toLowerCase().includes(value.toLowerCase())
-       )
+    await this.housingService.getHousingLocationByCity(value)
+        .then((housingLocationFilteredList:Housinglocation[] | undefined) => this.filteredLocationList = housingLocationFilteredList)
+
+       // this.filteredLocationList = this.housingLocationList.filter(
+       //  housingLocation => housingLocation?.city.toLowerCase().includes(value.toLowerCase())
+       // )
 
 
   }

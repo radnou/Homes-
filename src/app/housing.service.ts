@@ -33,4 +33,10 @@ url = 'http://localhost:3000/locations';
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(firstName,lastName,email)
   }
+
+  async getHousingLocationByCity(value: string):Promise<Housinglocation[] | undefined> {
+    if(!value) return ;
+     const data = await fetch(`${this.url}/?city_like=${value}`);
+    return await data.json();
+  }
 }
