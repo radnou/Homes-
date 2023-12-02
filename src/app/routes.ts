@@ -1,4 +1,4 @@
-import { Route, Routes } from "@angular/router";
+import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { DetailsComponent } from "./details/details.component";
 
@@ -8,7 +8,9 @@ const routeConfig: Routes = [
     component: HomeComponent,
     title: "Home Page",
   },
-  { path: "details/:id", component: DetailsComponent, title: "Details" },
+  { path: "details/:id", component: DetailsComponent, title: "Details",
+    data: { animation: 'openClosePage' }},
+
 ];
 
 export default routeConfig;
